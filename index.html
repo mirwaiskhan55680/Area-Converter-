@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area Converter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(116, 87, 143);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Area Converter</h1>
+        <form id="areaConverterForm">
+            <label for="area">Enter Area:</label>
+            <input type="number" id="area" name="area" step="any" required>
+            <label for="unit">Select Unit:</label>
+            <select id="unit" name="unit">
+                <option value="marla">Marla</option>
+                <option value="sqft">Square Feet</option>
+            </select>
+            <input type="submit" value="Convert">
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('areaConverterForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const areaValue = parseFloat(document.getElementById('area').value);
+            const unit = document.getElementById('unit').value;
+            let convertedArea, resultText;
+
+            if (unit === 'marla') {
+                convertedArea = areaValue * 272.25;
+                resultText = `${areaValue} Marla is equal to ${convertedArea.toFixed(2)} square feet.`;
+            } else {
+                convertedArea = areaValue / 272.25;
+                resultText = `${areaValue} square feet is equal to ${convertedArea.toFixed(2)} Marla.`;
+            }
+
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = resultText;
+        });
+    </script>
+</body>
+</html>
